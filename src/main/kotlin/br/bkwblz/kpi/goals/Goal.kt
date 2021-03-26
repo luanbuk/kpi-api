@@ -2,6 +2,8 @@ package br.bkwblz.kpi.goals
 
 import br.bkwblz.kpi.arch.domain.DomainEntity
 import br.bkwblz.kpi.arch.utils.DateInterval
+import br.bkwblz.kpi.goals.GoalsErros.goalsEntryDateNotWithinInterval
+import br.bkwblz.kpi.goals.GoalsErros.goalsEntryWithDuplicatedDate
 import br.bkwblz.kpi.goals.users.User
 import org.bson.codecs.pojo.annotations.BsonId
 import java.lang.RuntimeException
@@ -18,6 +20,8 @@ data class Goal(
     @BsonId
     override val id =  UUID.randomUUID().toString()
 
+    override val active = true
+
     private val executionInterval: DateInterval get() = DateInterval(begin = begin, end = end)
 
     private var entries = mutableSetOf<Entry>()
@@ -25,14 +29,14 @@ data class Goal(
     fun addEntry(entry: Entry): Goal {
         if(entry.isWithinInterval(executionInterval)){
             if(entry.isDayDuplicated(this::isDayPresentInEntries)){
-                throw RuntimeException("goals.entry.withDuplicatedDate")
+                throw RuntimeException(goalsEntryWithDuplicatedDate)
             }
             this.entries.add(entry)
         }
-        throw RuntimeException("goals.entry.dateIsNotWithinInterval")
+        throw RuntimeException(goalsEntryDateNotWithinInterval)
     }
 
-    private fun isDayPresentInEntries(day: LocalDate) = this@Goal.entries.any { e -> e.day == day }
+    private fun isDayPresentInEntries(day: LocalDate) = this@Goal.entries.any { e -> e.active && e.day == day }
 
 }
 
@@ -42,6 +46,8 @@ data class Entry(
 ){
     @BsonId
     val id =  UUID.randomUUID().toString()
+
+    val active = true
 
     fun isWithinInterval(interval: DateInterval) = interval.contains(day)
 
