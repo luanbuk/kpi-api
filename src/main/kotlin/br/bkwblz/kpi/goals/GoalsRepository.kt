@@ -1,5 +1,7 @@
 package br.bkwblz.kpi.goals
 
+import com.sun.org.apache.xpath.internal.operations.Bool
+
 interface GoalsRepository {
     fun exists(id: String): Boolean
 
@@ -9,7 +11,7 @@ interface GoalsRepository {
 
     fun insert(goal: Goal)
 
-    fun update(it: Goal)
+    fun update(it: Goal): Boolean
 
     fun deactivate(id: String)
 

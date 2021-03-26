@@ -1,4 +1,4 @@
-package br.bkwblz.kpi.arch.utils
+package br.bkwblz.kpi.arch.dates
 
 import java.time.LocalDate
 

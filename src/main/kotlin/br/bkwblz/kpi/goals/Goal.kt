@@ -1,7 +1,7 @@
 package br.bkwblz.kpi.goals
 
 import br.bkwblz.kpi.arch.domain.DomainEntity
-import br.bkwblz.kpi.arch.utils.DateInterval
+import br.bkwblz.kpi.arch.dates.DateInterval
 import br.bkwblz.kpi.goals.GoalsErros.goalsEntryDateNotWithinInterval
 import br.bkwblz.kpi.goals.GoalsErros.goalsEntryWithDuplicatedDate
 import br.bkwblz.kpi.goals.users.User
@@ -38,6 +38,9 @@ data class Goal(
 
     private fun isDayPresentInEntries(day: LocalDate) = this@Goal.entries.any { e -> e.active && e.day == day }
 
+    companion object{
+        val COLLECTION_NAME = "goals"
+    }
 }
 
 data class Entry(

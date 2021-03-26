@@ -4,10 +4,16 @@ import br.bkwblz.kpi.goals.GoalsErros.goalsDuplicatedName
 import br.bkwblz.kpi.goals.GoalsErros.goalsEntryNotFound
 import br.bkwblz.kpi.goals.GoalsErros.goalsNotFound
 import br.bkwblz.kpi.goals.users.UsersRepository
+import javax.enterprise.context.RequestScoped
 import javax.inject.Inject
 import javax.ws.rs.*
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.MediaType.APPLICATION_JSON
 
 @Path("goals")
+@Consumes(APPLICATION_JSON)
+@Produces(APPLICATION_JSON)
+@RequestScoped
 class GoalsResource @Inject constructor(
     private val usersRepository: UsersRepository,
     private val goalsRepository: GoalsRepository
