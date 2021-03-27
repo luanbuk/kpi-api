@@ -15,8 +15,8 @@ import javax.enterprise.context.Dependent
 @Dependent
 class CodecRegistryFactoryImpl : CodecRegistryFactory{
 
-    override fun create() = CodecRegistries.fromRegistries(
-        CodecRegistries.fromCodecs(LocalDateCodec(), LocalDateTimeCodec()),
+    override fun create(codecRegistrySupplier: () -> CodecRegistry) = CodecRegistries.fromRegistries(
+        CodecRegistries.fromCodecs(LocalDateCodec(), LocalDateTimeCodec(), DBRefCodec(codecRegistrySupplier)),
         getDefaultCodecRegistry(),
         CodecRegistries.fromProviders(
             PojoCodecProvider.builder().automatic(true)

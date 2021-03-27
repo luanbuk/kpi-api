@@ -32,7 +32,7 @@ class MongoDatabaseProducer @Inject constructor(
 
     private fun createNewClient() = create(
         MongoClientSettings.builder().applyConnectionString(ConnectionString(this.mongoUri))
-            .codecRegistry(codecRegistryFactory.create()).build()
+            .codecRegistry(codecRegistryFactory.create { this.db.codecRegistry }).build()
     )
 
     companion object : KLogging()

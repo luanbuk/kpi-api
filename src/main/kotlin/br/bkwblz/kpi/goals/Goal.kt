@@ -5,6 +5,7 @@ import br.bkwblz.kpi.arch.dates.DateInterval
 import br.bkwblz.kpi.goals.GoalsErros.goalsEntryDateNotWithinInterval
 import br.bkwblz.kpi.goals.GoalsErros.goalsEntryWithDuplicatedDate
 import br.bkwblz.kpi.goals.users.User
+import com.mongodb.DBRef
 import org.bson.codecs.pojo.annotations.BsonId
 import java.lang.RuntimeException
 import java.time.LocalDate
@@ -14,7 +15,7 @@ data class Goal(
     var name: String,
     var begin: LocalDate,
     var end: LocalDate,
-    val user: User
+    val user: DBRef
 ): DomainEntity {
 
     @BsonId
