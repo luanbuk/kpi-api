@@ -1,7 +1,6 @@
 package br.bkwblz.kpi.arch.extensions
 
 import javax.json.Json.createObjectBuilder
-import javax.json.JsonObjectBuilder
 import javax.ws.rs.BadRequestException
 import javax.ws.rs.ForbiddenException
 import javax.ws.rs.NotAuthorizedException
