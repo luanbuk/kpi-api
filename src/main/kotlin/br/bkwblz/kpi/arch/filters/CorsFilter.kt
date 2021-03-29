@@ -1,12 +1,11 @@
 package br.bkwblz.kpi.arch.filters
 
-import java.io.IOException
 import javax.servlet.*
 import javax.servlet.annotation.WebFilter
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@WebFilter(filterName = "CorsFilter")
+@WebFilter(filterName = "CorsFilter", urlPatterns = ["/*"])
 class CorsFilter : BaseFilter() {
 
     override fun filter(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
