@@ -3,6 +3,10 @@
          xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet-mapping>
+        <servlet-name>AuthenticationFilter</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
     <filter-mapping>
         <filter-name>BypassFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -11,12 +15,6 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>CorsFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>ERROR</dispatcher>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>ERROR</dispatcher>

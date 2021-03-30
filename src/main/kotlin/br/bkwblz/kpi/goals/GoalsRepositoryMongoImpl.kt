@@ -16,7 +16,7 @@ class GoalsRepositoryMongoImpl @Inject constructor(
     private val database: MongoDatabase
 ) : GoalsRepository {
 
-    private val collection = database.getCollection(COLLECTION_NAME, Goal::class.java)
+    private val collection by lazy { database.getCollection(COLLECTION_NAME, Goal::class.java) }
 
     override fun exists(id: String) = collection.countDocuments(eq(id)) > 0
 

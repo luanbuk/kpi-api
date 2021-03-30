@@ -6,7 +6,7 @@ import kotlin.annotation.AnnotationTarget.*
 
 
 @Qualifier
-@Target(CLASS, FIELD, TYPE, CONSTRUCTOR)
+@Target(CLASS, FIELD, TYPE, CONSTRUCTOR, FUNCTION)
 @Retention(RUNTIME)
 @MustBeDocumented
 annotation class Current

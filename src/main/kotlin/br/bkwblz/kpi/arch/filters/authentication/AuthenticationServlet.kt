@@ -8,8 +8,8 @@ import com.google.api.client.auth.oauth2.BrowserClientRequestUrl
 import javax.servlet.annotation.WebServlet
 
 
-@WebServlet("/login")
-class AuthenticationFilter : HttpServlet(){
+@WebServlet(name = "AuthenticationServlet", urlPatterns = ["/login"])
+class AuthenticationServlet : HttpServlet(){
 
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         val url = BrowserClientRequestUrl(

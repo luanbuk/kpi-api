@@ -17,8 +17,9 @@
         <jackartaee.version>8.0.0</jackartaee.version>
         <jackson.version>2.11.1</jackson.version>
         <dockerfile.skip>true</dockerfile.skip>
-        <surefire-plugin.version>2.22.0</surefire-plugin.version>
+        <failsafe-plugin.version>2.22.0</failsafe-plugin.version>
         <docker.image.name>gcr.io/kpis-309102/kpi-api</docker.image.name>
+        <junit.version>5.0.0</junit.version>
     </properties>
 
     <dependencies>
@@ -103,12 +104,6 @@
             <version>${quarkus.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-junit5</artifactId>
-            <version>${quarkus.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>3.11.0</version>
@@ -139,21 +134,16 @@
             <version>1.31.2</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit5</artifactId>
-            <version>${kotlin.version}</version>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5</artifactId>
+            <version>${quarkus.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>4.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss</groupId>
-            <artifactId>jandex</artifactId>
-            <version>2.1.1.Final</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -232,6 +222,7 @@
                         <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=javax.enterprise.context.RequestScoped</option>
                         <option>all-open:annotation=io.quarkus.test.junit.QuarkusTest</option>
+                        <option>all-open:annotation=javax.servlet.annotation.WebFilter</option>
                     </pluginOptions>
                 </configuration>
                 <executions>
@@ -270,7 +261,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${surefire-plugin.version}</version>
+                <version>${failsafe-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>

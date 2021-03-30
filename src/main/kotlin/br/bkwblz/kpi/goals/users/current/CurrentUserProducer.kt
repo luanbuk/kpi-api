@@ -7,11 +7,13 @@ import javax.ws.rs.Produces
 @RequestScoped
 class CurrentUserProducer : CurrentUserCache{
 
-    @get:Produces
-    @field:Current
-    var user: User? = null
+    private var user: User? = null
 
     override fun update(principal: User) {
         this.user = principal
     }
+
+    @Produces
+    @Current
+    fun produce(): User? = user
 }

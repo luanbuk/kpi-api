@@ -1,7 +1,5 @@
 package br.bkwblz.kpi.goals
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-
 interface GoalsRepository {
     fun exists(id: String): Boolean
 
